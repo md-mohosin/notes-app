@@ -1,0 +1,64 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  border: 1px solid red;
+  background-color: white
+}
+
+.notes {
+  display: flex;
+}
+
+.sidebar {
+  width: 23%;
+  border: 1px solid red;
+  height: 100vh;
+  background-color: gray;
+}
+
+.content {
+  width: 77%;
+  border: 1px solid blue;
+  height: 100vh;
+  padding: 20px;
+}
+
+.nav-link {
+  list-style: none;
+}
+
+.nav-link li {
+  margin-bottom: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  border: 1px solid white;
+  padding: 10px 20px;
+}
+
+
+.add-notes-section {
+  display: none;
+  height: 100%;
+}
+
+.add-notes {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.note {
+  font-size: 25px;
+  border: 1px solid gray;
+  margin-bottom: 20px;
+  padding: 15px;
+  width: 50%;
+}

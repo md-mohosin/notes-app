@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+  <section class="container">
+    <div class="notes">
+      <div class="sidebar">
+        <ul class="nav-link">
+          <li id="home-btn">Home</li>
+          <li>All notes</li>
+          <li>Save notes</li>
+          <li id="new-notes">Add new Notes</li>
+        </ul>
+      </div>
+      <div class="content">
+
+        <!-- Home page -->
+        <div class="home" id="home-page">
+          <h1>Home page</h1>
+          <div id="notes-container">
+            
+          </div>
+        </div>
+
+
+        <!-- ADD NEW NOTES SECTION -->
+        <div class="add-notes-section" id="add-note-page">
+          <div class="add-notes">
+            <div class="add-notes-content">
+              <h1>Add new notes</h1>
+              <form >
+                <textarea name="" rows="10" cols="60" id="new-note"></textarea>
+                <br>
+                <button id="add-note-btn"
+                 style="background-color: aqua;width: 120px; padding:10px 0;border: none;">Add</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script src="./src/notes.js"></script>
+</body>
+
+</html>
