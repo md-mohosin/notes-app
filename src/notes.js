@@ -40,7 +40,6 @@ document.getElementById("add-note-btn").addEventListener("click", e => {
     const ampm = hours >= 12 ? 'pm' : 'am'
     const time = `${prevent0}:${minute} ${ampm}`
     const noteDetilas = { title: title, description: newNote, time: time, id: Date.now() }
-    console.log(noteDetilas)
     notesColleciton.push(noteDetilas)
     saveNoteLocalStorage()
     renderNote()
@@ -62,17 +61,11 @@ function renderNote() {
             <p class="des">Description:${note.description}</p>
             <p>${note.time}</p>
         </div>
-        <div class='note-img'>
-        <img src='./src/images/pen.png'>
-        <img class='deleteBtn' data-id='${note.id}' src='./src/images/trash.png'>
-        </div>
+        <img class='deleteBtn' data-id='${note.id}' src='./src/images/trash.png'>   
     </div>
         `
         notesContainer.appendChild(div)
-
-
     })
-
 
     document.getElementById("notes-length").innerText = notesColleciton.length
 }
@@ -82,6 +75,7 @@ document.addEventListener("click", e => {
     if (e.target.classList.contains("deleteBtn")) {
         const id = e.target.dataset.id;
         notesColleciton = notesColleciton.filter(data => data.id !== Number(id))
+        saveNoteLocalStorage()
         renderNote()
     }
 })
@@ -98,7 +92,6 @@ function loadNote() {
     if (data) {
         notesColleciton = JSON.parse(data)
         renderNote()
-
     }
 }
 

@@ -14,23 +14,24 @@
       <div class="sidebar">
         <ul class="nav-link">
           <li id="home">Home</li>
-          <li id="all-notes">All notes</li>
-          <li id="new-notes">Add new Notes</li>
+          <li id="all-notes">All note</li>
+          <li id="new-notes">Add Note</li>
         </ul>
       </div>
       <div class="content">
-
         <!-- Home page -->
         <div id="home-page">
-          <h1 style="font-size: 50px;">Personal Notes Application</h1>
-          <p style="font-size: 20px; width: 70%;text-align: center;">Create, manage, and store your daily notes with time — a simple, fast, and reliable way to keep all your important thoughts organized in one place.</p>
-          <img style="border-radius: 17px; width: 900px; height: 500px;" src="./src/images/note.jpg" alt="">
+          <h1 class="home-page-heading">Personal Notes Application</h1>
+          <p class="home-page-title">Create, manage, and store your daily notes with time — a simple, fast, and reliable
+            way to keep all your important thoughts organized in one place.</p>
+          <img class="home-page-img" src="./src/images/note.jpg" alt="">
         </div>
 
 
         <!-- All Note page -->
-        <div class="all-note-page hidden" id="allNote-page">
-          <h1>All Notes: <span id="notes-length"></span></h1>
+        <div class="hidden" id="allNote-page">
+          <h1>All Notes: <span id="notes-length"></span>
+          </h1>
           <div id="notes-container">
 
           </div>
@@ -41,13 +42,12 @@
         <div class="add-notes-section hidden" id="add-note-page">
           <div class="add-notes">
             <div class="add-notes-content">
-              <h1 style="text-align: center;font-size: 50px;padding-bottom: 30px;">Add your new notes</h1>
+              <h1 class="add-notes-title">Add your new notes</h1>
               <form>
-                <textarea style="font-size: 20px; padding: 20px;border-radius: 14px;" placeholder="Write your note...."
-                  rows="8" cols="70" id="new-note"></textarea>
+                <textarea class="input-box" placeholder="Write your note...." rows="8" cols="70"
+                  id="new-note"></textarea>
                 <br>
-                <button id="add-note-btn"
-                  style="background-color: aqua;width: 120px; font-size: 20px;border-radius: 10px; padding:10px 0;border: none;margin-top: 10px;">Add</button>
+                <button id="add-note-btn">Add</button>
               </form>
             </div>
           </div>
