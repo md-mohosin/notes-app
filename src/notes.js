@@ -7,12 +7,12 @@ function show(id) {
 
 
 document.getElementById("new-notes").addEventListener("click", function () {
-    hide("home-page")
+    hide("allNote-page")
     show("add-note-page")
 })
-document.getElementById("home-btn").addEventListener("click", () => {
+document.getElementById("all-notes").addEventListener("click", () => {
     hide("add-note-page")
-    show("home-page")
+    show("allNote-page")
 })
 
 
@@ -20,11 +20,25 @@ let notesColleciton = []
 
 document.getElementById("add-note-btn").addEventListener("click", e => {
     e.preventDefault()
-    const newNotes = document.getElementById("new-note").value;
-    notesColleciton.push(newNotes)
+    const textarea = document.getElementById("new-note")
+    const newNote = textarea.value.trim();
+    const partNote = newNote.split(" ")
+    const title = partNote.slice(0, 3).join(" ")
+    if (newNote === '') return
+    const date = new Date()
+    const minute = date.getMinutes()
+    const hours = date.getHours()
+    const convertHours = hours >= 12 ? hours - 12 : hours
+    const prevent0 = convertHours % 12 === 0 ? 12 : convertHours
+    const ampm = hours >= 12 ? 'pm' : 'am'
+    const time = `${prevent0}:${minute} ${ampm}`
+    const noteDetilas = { title: title, description: newNote, time: time }
+    console.log(noteDetilas)
+    notesColleciton.push(noteDetilas)
     saveNoteLocalStorage()
     renderNote()
-    newNotes.value = ''
+    textarea.value = ''
+    console.log(notesColleciton)
 })
 
 
@@ -32,14 +46,26 @@ document.getElementById("add-note-btn").addEventListener("click", e => {
 const notesContainer = document.getElementById("notes-container")
 
 function renderNote() {
-    notesContainer.innerHTML=''
+    notesContainer.innerHTML = ''
     notesColleciton.forEach(note => {
-        const p = document.createElement("p")
-        p.textContent = note
-        p.classList='note'
-        notesContainer.appendChild(p)
+        const div = document.createElement("div")
+        div.innerHTML = `
+    <div class='note'>
+        <div>
+            <h3>Title:${note.title}</h3>
+            <p class="des">Description:${note.description}</p>
+            <p>${note.time}</p>
+        </div>
+        <div>
+        <img src='./src/images/pen.png'>
+        </div>
+    </div>
+        `
+        notesContainer.appendChild(div)
     })
+    document.getElementById("notes-length").innerText = notesColleciton.length
 }
+
 
 
 function saveNoteLocalStorage() {
@@ -52,6 +78,7 @@ function loadNote() {
     if (data) {
         notesColleciton = JSON.parse(data)
         renderNote()
+
     }
 }
 
