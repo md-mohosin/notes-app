@@ -1,18 +1,25 @@
 function hide(id) {
-    document.getElementById(id).style.display = 'none'
+    document.getElementById(id).classList.add('hidden')
 }
 function show(id) {
-    document.getElementById(id).style.display = 'block'
+    document.getElementById(id).classList.remove('hidden')
 }
 
 
 document.getElementById("new-notes").addEventListener("click", function () {
     hide("allNote-page")
+    hide("home-page")
     show("add-note-page")
 })
 document.getElementById("all-notes").addEventListener("click", () => {
     hide("add-note-page")
+    hide("home-page")
     show("allNote-page")
+})
+document.getElementById("home").addEventListener("click", () => {
+    hide("allNote-page")
+    hide("add-note-page")
+    show("home-page")
 })
 
 
@@ -32,13 +39,12 @@ document.getElementById("add-note-btn").addEventListener("click", e => {
     const prevent0 = convertHours % 12 === 0 ? 12 : convertHours
     const ampm = hours >= 12 ? 'pm' : 'am'
     const time = `${prevent0}:${minute} ${ampm}`
-    const noteDetilas = { title: title, description: newNote, time: time }
+    const noteDetilas = { title: title, description: newNote, time: time, id: Date.now() }
     console.log(noteDetilas)
     notesColleciton.push(noteDetilas)
     saveNoteLocalStorage()
     renderNote()
     textarea.value = ''
-    console.log(notesColleciton)
 })
 
 
@@ -56,15 +62,29 @@ function renderNote() {
             <p class="des">Description:${note.description}</p>
             <p>${note.time}</p>
         </div>
-        <div>
+        <div class='note-img'>
         <img src='./src/images/pen.png'>
+        <img class='deleteBtn' data-id='${note.id}' src='./src/images/trash.png'>
         </div>
     </div>
         `
         notesContainer.appendChild(div)
+
+
     })
+
+
     document.getElementById("notes-length").innerText = notesColleciton.length
 }
+
+
+document.addEventListener("click", e => {
+    if (e.target.classList.contains("deleteBtn")) {
+        const id = e.target.dataset.id;
+        notesColleciton = notesColleciton.filter(data => data.id !== Number(id))
+        renderNote()
+    }
+})
 
 
 
